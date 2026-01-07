@@ -6,6 +6,534 @@
     <title>WEI-EN YU | 台灣魔術方塊玩家</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+    /* -----------------------------------------------------
+   Website CSS Stylesheet (style.css)
+   ----------------------------------------------------- */
+
+/* -------------------------------------
+   1. 基礎重置與變數 (Reset & Variables)
+   ------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+:root {
+    --primary-color: #008cff; /* 主色調：淺粉色 */
+    --accent-color: #007bff; /* 輔助色調 */
+    --text-dark: #4b4b4b;
+    --text-light: #777777;
+    --bg-light: #87e3ff; /* 淺粉色背景 */
+}
+
+body {
+    font-family: 'Arial', 'Microsoft JhengHei', sans-serif; /* 基礎字體設定 */
+    line-height: 1.6; 
+    color: var(--text-dark);
+    background-color: #ffffff;
+}
+
+/* 連結與清單基礎樣式 */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-padding {
+    padding: 80px 0; /* 區塊上下邊距 */
+}
+
+/* -------------------------------------
+   2. 頂部 Hero 區塊與導覽列
+   ------------------------------------- */
+
+.hero-section {
+    position: relative;
+    height: 750px; 
+    background: linear-gradient(to bottom right, var(--bg-light) 50%, #f7d2d6 100%); /* 漸變背景 */
+    overflow: hidden; 
+}
+
+/* 導覽列 */
+.top-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--text-dark);
+}
+
+.primary-nav ul {
+    display: flex;
+    gap: 25px; /* 調整按鈕間距 */
+}
+
+.primary-nav a {
+    color: var(--text-dark);
+    font-size: 0.95em;
+    padding: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.primary-nav a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Hero 內容 */
+.hero-content {
+    position: relative;
+    padding-top: 50px;
+    z-index: 10;
+}
+
+.main-tagline {
+    font-size: 4em; 
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    width: 45%; 
+}
+
+.intro-text {
+    position: absolute; 
+    top: 150px;
+    right: 5%;
+    font-style: italic;
+    color: var(--text-light);
+    text-align: right;
+    line-height: 1.5;
+    font-size: 1.1em;
+}
+
+/* Hero 頭像圖片定位與圓形遮罩 */
+.profile-hero {
+    position: absolute;
+    top: 150px; 
+    left: 60%;
+    z-index: 5; 
+}
+
+.profile-hero img {
+    width: 380px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* -------------------------------------
+   3. 主頁面區塊 (index.html 專用)
+   ------------------------------------- */
+
+/* 最新影片區塊 (交疊效果) */
+.video-section {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    margin-top: -150px; /* 向上移動交疊 */
+    position: relative;
+    z-index: 20; 
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%; 
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+.video-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* 關於我區塊 */
+.about-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    min-height: 600px;
+    padding-top: 100px; 
+    position: relative;
+}
+
+.about-text {
+    flex: 1;
+    max-width: 45%;
+}
+
+.about-text .sub-title {
+    color: var(--text-light);
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.about-text h3 {
+    font-size: 2.8em;
+    margin: 10px 0 20px 0;
+    line-height: 1.3;
+    color: var(--text-dark);
+}
+
+.read-more-btn {
+    background: transparent;
+    border: 2px solid var(--text-dark);
+    padding: 12px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.about-image-wrapper {
+    flex: 1;
+    text-align: right;
+    position: relative;
+}
+
+.about-img-clip {
+    width: 380px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 50%; 
+    box-shadow: 0 0 0 20px rgba(var(--primary-color), 0.5); 
+}
+
+/* -------------------------------------
+   4. 獨立頁面專屬樣式 (link.html 專用)
+   ------------------------------------- */
+
+/* 縮小 Hero 區塊的高度，只保留導覽列 */
+.hero-section.small-hero {
+    height: auto; 
+    padding-bottom: 0;
+    background: #ffffff; /* 獨立頁面使用白色背景即可 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.hero-section.small-hero .top-nav-bar {
+    padding-bottom: 15px;
+}
+
+/* 連結頁面內容樣式 */
+.link-page-content {
+    background-color: #ffffff;
+    padding-top: 50px; 
+    min-height: 80vh; 
+}
+
+.link-page-content h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.link-page-content p {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--text-light);
+}
+
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px;
+}
+
+.link-item {
+    background: #ffffff;
+    padding: 40px 20px 20px 20px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.link-item:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 連結頭像樣式 */
+.link-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* 圓形頭像 */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--primary-color); 
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8); 
+}
+
+.link-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.link-item p {
+    font-size: 0.9em;
+    color: var(--text-light);
+    flex-grow: 1; 
+}
+
+/* 按鈕樣式 (精緻化) */
+.link-btn {
+    width: 100%; 
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px 20px; 
+    background-color: var(--text-dark); 
+    color: #ffffff !important; 
+    border-radius: 8px; 
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.link-btn:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------------------------
+   5. 平台顏色按鈕樣式
+   ------------------------------------- */
+
+/* YouTube 特色樣式 */
+.youtube-link .link-btn {
+    background-color: #FF0000; 
+}
+.youtube-link .link-btn:hover {
+    background-color: #CC0000;
+}
+
+/* Facebook 特色樣式 */
+.facebook-link .link-btn {
+    background-color: #1877F2;
+}
+.facebook-link .link-btn:hover {
+    background-color: #145CBF;
+}
+
+/* Instagram 特色樣式 */
+.instagram-link .link-btn {
+    background-color: #C13584;
+}
+.instagram-link .link-btn:hover {
+    background-color: #9C2A69;
+}
+
+/* CSTimer 按鈕顏色 */
+.product-link .link-btn {
+    background-color: #34495e;
+}
+.product-link .link-btn:hover {
+    background-color: #2c3e50;
+}
+
+
+/* -------------------------------------
+   6. 頁尾與響應式設計 (RWD)
+   ------------------------------------- */
+
+.main-footer {
+    background: #f4f4f4;
+    color: var(--text-dark);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+/* 平板與較小桌面 (Max-width: 992px) */
+@media (max-width: 992px) {
+    .main-tagline {
+        font-size: 3em;
+        width: 60%;
+    }
+    .profile-hero {
+        left: 55%;
+    }
+    .about-text {
+        max-width: 55%;
+    }
+}
+
+/* 手機版 (Max-width: 768px) */
+@media (max-width: 768px) {
+    .top-nav-bar {
+        flex-direction: column;
+        gap: 15px;
+        padding-bottom: 5px;
+    }
+    .primary-nav ul {
+        gap: 15px;
+    }
+    
+    /* Hero 區塊調整 */
+    .hero-section {
+        height: auto;
+        padding-bottom: 50px;
+    }
+    .main-tagline {
+        font-size: 2.5em;
+        width: 100%;
+        text-align: center;
+    }
+    .intro-text {
+        position: static;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .profile-hero {
+        position: static;
+        transform: none;
+        margin: 40px auto;
+    }
+    
+    /* 影片區塊調整 */
+    .video-section {
+        margin-top: -50px;
+        padding: 20px;
+    }
+    .video-grid {
+        grid-template-columns: 1fr; /* 影片垂直堆疊 */
+    }
+
+    /* 關於我區塊調整 */
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+    }
+    .about-text {
+        max-width: 100%;
+    }
+    .about-image-wrapper {
+        text-align: center;
+    }
+
+    /* 連結頁面調整 */
+    .link-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* -------------------------------------
+   3.1 主頁 Hero 區塊 - 社群按鈕樣式
+   ------------------------------------- */
+
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    /* 讓按鈕在 Hero 區塊的排版中靠左對齊 */
+}
+
+/* 確保在小螢幕上按鈕可以換行 */
+@media (max-width: 768px) {
+    .social-buttons {
+        justify-content: center; /* 手機上置中 */
+        flex-wrap: wrap; /* 允許換行 */
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px; /* 柔和的圓角 */
+    color: #ffffff !important; /* 強制文字為白色 */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* 輕微上浮效果 */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------------------------
+   3.2 社群平台品牌顏色
+   ------------------------------------- */
+
+/* Discord (藍紫色) */
+.btn-discord {
+    background-color: #5865F2;
+}
+.btn-discord:hover {
+    background-color: #4752C4;
+}
+
+/* Facebook (藍色) */
+.btn-facebook {
+    background-color: #1877F2;
+}
+.btn-facebook:hover {
+    background-color: #145CBF;
+}
+
+/* Instagram (使用深粉/紫紅來模擬漸變色) */
+.btn-instagram {
+    background-color: #C13584;
+    /* 也可以使用漸變色: background-image: linear-gradient(to right, #833AB4, #FD1D1D, #F56040); */
+}
+.btn-instagram:hover {
+    background-color: #9C2A69;
+}
+
+/* YouTube (紅色) */
+.btn-youtube {
+    background-color: #FF0000;
+}
+.btn-youtube:hover {
+    background-color: #CC0000;
+}
 <body>
 
     <div class="hero-section">
@@ -61,4 +589,5 @@
     </footer>
 
 </body>
+
 </html>
